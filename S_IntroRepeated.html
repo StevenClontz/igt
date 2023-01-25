@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Introduction to Repeated Games</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Introduction to Game Theory">
+<meta property="book:author" content="Jennifer Firkins Nordstrom">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="" target="_blank"><img src="external/logo.svg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Introduction to Game Theory:</span> <span class="subtitle">a Discovery Approach</span></a></h1>
+<p class="byline">Jennifer Firkins Nordstrom</p>
+</div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="chapter-3.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter-3.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S_MixStratGraph.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\MyTikzmark}[2]{
+     \tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {$#2$};}
+\newcommand{\DrawVLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.3ex, #1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\DrawHLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.2em, #1] (#2.west) -- (#3.east);
+  \end{tikzpicture}
+}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-1.html" class="internal"><span class="codenumber">1</span> <span class="title">What is Game Theory?</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_intro.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Players and Strategies</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_intro.html#Ex_Cake" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Example: Cake Division</span></a></div></li>
+<li><div class="toc-item"><a href="S_intro.html#Ex_Tic" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Developing Strategies: Tic Tac Toe</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="S_IntroMatrices.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Game Matrices and Payoff Vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroMatrices.html#Ex_MatchPennies" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Example: Matching Pennies</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroMatrices.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Understanding the Players</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-2.html" class="internal"><span class="codenumber">2</span> <span class="title">Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_IntroZeroSum.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Introduction to Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#Ex_election" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Example: An Election Campaign Game</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#subsection-6" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Equilibrium Pairs</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_DominatedStrategies.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Dominated Strategies</span></a></div></li>
+<li>
+<div class="toc-item"><a href="S_Probability.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Probability and Expected Value</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_Probability.html#subsection-7" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Some Basic Probability</span></a></div></li>
+<li><div class="toc-item"><a href="S_Probability.html#subsection-8" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Expected Value</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_OneCardStud.html" class="internal"><span class="codenumber">2.4</span> <span class="title">A Game of Chance</span></a></div></li>
+<li><div class="toc-item"><a href="S_EquilibPoints.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_ZeroSumStrategySummary.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Strategies for Zero-Sum Games and Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopRationality.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Popular Culture: Rationality and Perfect Information</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-3.html" class="internal"><span class="codenumber">3</span> <span class="title">Repeated Two-Person Zero-sum Games</span></a></div>
+<ul class="structural">
+<li class="active"><div class="toc-item"><a href="S_IntroRepeated.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Repeated Games</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratGraph.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Mixed Strategies: Graphical Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_solvingeq.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Using Sage to Graph Lines and Solve Equations</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratEV.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Mixed Strategies: Expected Value Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_LiarsPoker.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Liar's Poker</span></a></div></li>
+<li><div class="toc-item"><a href="S_AugMatrices.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Augmented Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="S_Undercut.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Undercut</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-4.html" class="internal"><span class="codenumber">4</span> <span class="title">Non-Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="Intrononzero.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Introduction to Two-Player Non-Zero-Sum Games</span></a></div></li>
+<li><div class="toc-item"><a href="pdandchicken.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Prisoner's Dilemma and Chicken</span></a></div></li>
+<li><div class="toc-item"><a href="S_CWPD.html" class="internal"><span class="codenumber">4.3</span> <span class="title">A Class-Wide Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_PDconditions.html" class="internal"><span class="codenumber">4.4</span> <span class="title">What Makes a Prisoner's Dilemma?</span></a></div></li>
+<li><div class="toc-item"><a href="VDexperiment.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Another Multiplayer Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_VolunteerDil.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Volunteer's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_RepeatPD.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Repeated Prisoner's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopPD.html" class="internal"><span class="codenumber">4.8</span> <span class="title">Popular Culture: Prisoner's Dilemma and Chicken</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="colophon-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S_IntroRepeated"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.1</span> <span class="title">Introduction to Repeated Games</span>
+</h2>
+<div class="para" id="p-344">Now that we are experts at finding equilibrium pairs, what happens when a game doesn't have any equilibrium pairs? What should our players do?</div>
+<article class="example example-like" id="E_smallrepeat"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-E_smallrepeat"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">A <span class="process-math">\(2\times 2\)</span> Repeated Game.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_smallrepeat"><article class="example example-like"><div class="para logical" id="p-345">
+<div class="para">Consider the following zero-sum game</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left[\begin{matrix}1\amp 0\\
+-1\amp 2
+\end{matrix} \right].
+\end{equation*}
+</div>
+</div> <div class="para" id="p-346">Does this game have an equilibrium pair? Play this game with an opponent 10 times. Tally your wins and losses. Describe how you chose which strategy to play. Describe how your opponent chose which strategy to play.</div></article></div>
+<div class="para" id="p-347">When playing the game several times, does it make sense for either player to play the same strategy all the time? Why or why not?</div>
+<div class="para" id="p-348">Although we use the term “strategy” to mean which row (or column) a player chooses to play, we will also refer to how a player plays a repeated game as the player's strategy. In order to avoid confusion, in repeated games we will define some specific strategies.</div>
+<article class="definition definition-like" id="definition-7"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.2</span><span class="period">.</span>
+</h3>
+<div class="para" id="p-349">In a repeated game, if a player always plays the same row (or column), we say that she is playing a <dfn class="terminology">pure strategy</dfn>.</div></article><div class="para" id="p-350">For example, if Player 1 always plays Row A, we say she is playing <em class="emphasis">pure strategy A</em>.</div>
+<article class="definition definition-like" id="definition-8"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.1.3</span><span class="period">.</span>
+</h3>
+<div class="para" id="p-351">If a player varies which row (or column) he plays, then we say he is playing a <dfn class="terminology">mixed strategy</dfn>.</div></article><div class="para" id="p-352">For example, if a player plays Row A 40% of the time and Row B 60% of the time, we will say he is playing a (.4, .6) strategy, as we generally use the probability rather than the percent. The probabilities of each strategy will be listed in the same order as the strategies in the matrix.</div>
+<div class="para" id="p-353">It is not enough just to determine how often to play a strategy. Suppose Player 1 just alternates rows in <a href="" class="xref" data-knowl="./knowl/E_smallrepeat.html" title="Example 3.1.1: A 2\times 2 Repeated Game">Example 3.1.1</a>. Can Player 2 “out-guess” Player 1? What might be a better way for Player 1 to play?</div>
+<div class="para" id="p-354">We'd really like to find a way to determine the best mixed strategy for each player in repeated games. Let's start with what we already know: games with equilibrium points. If a game has an equilibrium pair, would a player want to play a mixed strategy? Recall that a strategy pair is an equilibrium pair if neither player gains by switching strategy.</div>
+<article class="example example-like" id="E_repeatequil"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-E_repeatequil"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">Repeating a Game with an Equilibrium.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_repeatequil"><article class="example example-like"><div class="para logical" id="p-355">
+<div class="para">Consider the following zero-sum game</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left[\begin{matrix}-1\amp 1\\
+0\amp 2
+\end{matrix} \right].
+\end{equation*}
+</div>
+</div> <div class="para" id="p-356">This game has an equilibrium pair. Convince yourself that if this game is played repeatedly, each player should choose to play a pure strategy.</div></article></div>
+<div class="para" id="p-357">Thus, if the game has an equilibrium we know that players will play the pure strategies determined by the equilibrium pairs. So let's get back to thinking about games without equilibrium pairs. If we play such a game once, can we predict the outcome? What about if we repeat the game several times– can we predict the outcome? Think about tossing a coin. If you toss it once, can you predict the outcome? What if you toss it 100 times– can you predict the outcome? Not exactly, but we can say what we <em class="emphasis">expect</em>: if we toss a coin 100 times we expect to have half of the coins turn up heads and half turn up tails. This may not be the <em class="emphasis">actual</em> outcome, but it is a reasonable prediction. Now is a good time to remind yourself about finding the <em class="emphasis">expected value</em>!!</div>
+<div class="para" id="p-358">Recall the familiar game <em class="emphasis">Rock-Paper-Scissors</em>: ROCK beats SCISSORS, SCISSORS beat PAPER, and PAPER beats ROCK. Using the payoff matrix and experimentation, we will try to determine the best strategy for this game.</div>
+<article class="exercise exercise-like" id="E_RPSmatrix"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSmatrix"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.5</span><span class="period">.</span><span class="space"> </span><span class="title">RPS payoff matrix.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSmatrix"><article class="exercise exercise-like"><div class="para" id="p-359">Construct a game matrix for Rock-Paper-Scissors.</div></article></div>
+<article class="exercise exercise-like" id="E_RPSzs"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSzs"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">RPS and equilibrium points.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSzs"><article class="exercise exercise-like"><div class="para" id="p-360">Is Rock-Paper-Scissors a zero-sum game? Does it have an equilibrium point? Explain.</div></article></div>
+<article class="exercise exercise-like" id="E_RPSplay"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSplay"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">Play RPS.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSplay"><article class="exercise exercise-like"><div class="para" id="p-361">We want to look at what happens if we repeat Rock-Paper-Scissors. Play the game ten times with an opponent. Record the results (list strategy pairs and payoffs for each player).</div></article></div>
+<article class="exercise exercise-like" id="E_RPSconjstrat"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSconjstrat"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.8</span><span class="period">.</span><span class="space"> </span><span class="title">Conjecture a strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSconjstrat"><article class="exercise exercise-like"><div class="para" id="p-362">Describe any strategy you used in <a href="" class="xref" data-knowl="./knowl/E_RPSplay.html" title="Exercise 3.1.7: Play RPS">Exercise 3.1.7</a>.</div></article></div>
+<article class="exercise exercise-like" id="E_RPSreflect"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSreflect"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.9</span><span class="period">.</span><span class="space"> </span><span class="title">Strengths and weaknesses of your strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSreflect"><article class="exercise exercise-like"><div class="para" id="p-363">Reflect on your chosen strategy. Does it guarantee you a “win”? What should it mean to “win” in a repeated game? What are the strengths and weaknesses of your strategy?</div></article></div>
+<article class="exercise exercise-like" id="E_RPSshare"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSshare"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.10</span><span class="period">.</span><span class="space"> </span><span class="title">Share your strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSshare"><article class="exercise exercise-like"><div class="para" id="p-364">Discuss your strategy with someone else in the class (it can be your opponent). After sharing your ideas for a strategy, can you improve your previous strategy?</div></article></div>
+<div class="para" id="p-365">Although you may have come up with a good strategy, let's see if we can't decide what the “best” strategy should be for Rock-Paper-Scissors. Let's assume we are playing Rock-Paper-Scissors against the smartest player to ever live. We will call such an opponent the “perfect” player.</div>
+<article class="exercise exercise-like" id="E_RPSpure"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSpure"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.11</span><span class="period">.</span><span class="space"> </span><span class="title">The weakness of a pure strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSpure"><article class="exercise exercise-like"><div class="para" id="p-366">Explain why it is not a good idea to play a pure strategy; i.e., to play only ROCK, only PAPER, or only SCISSORS.</div></article></div>
+<article class="exercise exercise-like" id="E_RPSuneven"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSuneven"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.12</span><span class="period">.</span><span class="space"> </span><span class="title">An uneven strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSuneven"><article class="exercise exercise-like"><div class="para" id="p-367">Does it make sense to play one option more often than another (for example, ROCK more often than PAPER)? Explain.</div></article></div>
+<article class="exercise exercise-like" id="E_RPSstratbest"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSstratbest"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.13</span><span class="period">.</span><span class="space"> </span><span class="title">Frequency of R, P, S.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSstratbest"><article class="exercise exercise-like"><div class="para" id="p-368">How often should you play each option?</div></article></div>
+<article class="exercise exercise-like" id="E_RPSpattern"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSpattern"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.14</span><span class="period">.</span><span class="space"> </span><span class="title">Playing a pattern.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSpattern"><article class="exercise exercise-like"><div class="para" id="p-369">Do you want to play in a predictable pattern or randomly? What are some advantages and disadvantages of a pattern? What are some advantages and disadvantages of a random strategy?</div></article></div>
+<div class="para" id="p-370">Hopefully, you concluded that the best strategy against our perfect player would be to play ROCK, PAPER, SCISSORS 1/3 of the time each, and to play randomly. We can say that our strategy is to play each option randomly with a probability of 1/3, and call this the Random(1/3, 1/3, 1/3) strategy.</div>
+<article class="exercise exercise-like" id="E_RPSltpayoff"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSltpayoff"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.15</span><span class="period">.</span><span class="space"> </span><span class="title">Long-term payoff.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSltpayoff"><article class="exercise exercise-like"><div class="para" id="p-371">Using this “best” strategy, what do you predict the long term payoff will be for Player 1? For Player 2?</div></article></div>
+<article class="exercise exercise-like" id="E_RPSdice"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSdice"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.16</span><span class="period">.</span><span class="space"> </span><span class="title">Testing the Random(1/3, 1/3, 1/3) strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSdice"><article class="exercise exercise-like"><div class="para" id="p-372">Let's check our prediction. Using a die, let 1 and 2 represent ROCK, 3 and 4 represent PAPER, and 5 and 6 represent SCISSORS. Play the game 20 times with someone in class where each player rolls to determine the choice of ROCK, PAPER, or SCISSORS. Keep track of the strategy pairs and payoffs. What was the total payoff for each player? (At this point, if you still feel that you have a better strategy, try your strategy against the random one– see what happens!)</div></article></div>
+<article class="exercise exercise-like" id="E_RPSdicecompare"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSdicecompare"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.17</span><span class="period">.</span><span class="space"> </span><span class="title">Compare to your prediction.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSdicecompare"><article class="exercise exercise-like"><div class="para" id="p-373">How did the actual outcome compare to your predicted outcome? What do you expect would happen if you play the game 100 times? (Or more?)</div></article></div>
+<div class="para" id="p-374">Using ideas about probability and expected value we can more precisely answer <a href="" class="xref" data-knowl="./knowl/E_RPSdicecompare.html" title="Exercise 3.1.17: Compare to your prediction">Exercise 3.1.17</a>.</div>
+<article class="exercise exercise-like" id="E_RPSproboutcomes"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSproboutcomes"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.18</span><span class="period">.</span><span class="space"> </span><span class="title">Probabiliies when both players play the random strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSproboutcomes"><article class="exercise exercise-like"><div class="para" id="p-375">Assume both players are using the Random(1/3, 1/3, 1/3) strategy. List all the possible outcomes for a single game (recall the outcome is the strategy pair and the payoff, for example [R, P], <span class="process-math">\((-1, 1)\)</span>). What is the probability that any particular pair of strategies will be played? Are the strategy pairs equally likely?</div></article></div>
+<article class="exercise exercise-like" id="E_RPSexpval"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPSexpval"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.19</span><span class="period">.</span><span class="space"> </span><span class="title">Expected value.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPSexpval"><article class="exercise exercise-like"><div class="para" id="p-376">Using the probabilities and payoffs from <a href="" class="xref" data-knowl="./knowl/E_RPSproboutcomes.html" title="Exercise 3.1.18: Probabiliies when both players play the random strategy">Exercise 3.1.18</a> calculate the expected value of the game for each player.</div></article></div>
+<article class="exercise exercise-like" id="E_smallrepeatstrat"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_smallrepeatstrat"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.1.20</span><span class="period">.</span><span class="space"> </span><span class="title">Strategy for the repeated <span class="process-math">\(2\times 2\)</span> game.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_smallrepeatstrat"><article class="exercise exercise-like"><div class="para logical" id="p-377">
+<div class="para">Now consider the matrix from <a href="" class="xref" data-knowl="./knowl/E_smallrepeat.html" title="Example 3.1.1: A 2\times 2 Repeated Game">Example 3.1.1</a> above:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_smallrepeat.html">
+\begin{equation*}
+\left[\begin{matrix}1\amp 0\\
+-1\amp 2
+\end{matrix} \right].
+\end{equation*}
+</div>
+</div> <div class="para" id="p-378">See if you can determine how often Player 1 should play each row, and how often Player 2 should play each column. Try testing your proposed strategy (you may be able to use a variation on the dice as we saw in <a href="" class="xref" data-knowl="./knowl/E_RPSdice.html" title="Exercise 3.1.16: Testing the Random(1/3, 1/3, 1/3) strategy">Exercise 3.1.16</a>). Write up any conjectured strategies and the results from playing the game with your strategy. Do you think you have come up with the best strategy? Explain.</div></article></div>
+<div class="para" id="p-379">You may have had an idea about the best way to play Rock-Paper-Scissors before working through this section, but how can we find solutions to other games, such as the one in <a href="" class="xref" data-knowl="./knowl/E_smallrepeatstrat.html" title="Exercise 3.1.20: Strategy for the repeated 2\times 2 game">Exercise 3.1.20</a>? We don't want to just use a “guess and check” method. Especially since there are infinitely many possible mixed strategies to try! The rest of the chapter will develop mathematical methods for solving repeated games with no equilibrium point.</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="chapter-3.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S_MixStratGraph.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy"><div class="name">Powered by Runestone</div>
+<img class="logo" title="Powered by Runestone" src="https://runestone.academy/runestone/static/rectangle_badge.png" alt="Powered by Runestone"></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+</body>
+</html>

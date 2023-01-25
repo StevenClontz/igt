@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A Game of Chance</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Introduction to Game Theory">
+<meta property="book:author" content="Jennifer Firkins Nordstrom">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="" target="_blank"><img src="external/logo.svg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Introduction to Game Theory:</span> <span class="subtitle">a Discovery Approach</span></a></h1>
+<p class="byline">Jennifer Firkins Nordstrom</p>
+</div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="S_Probability.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter-2.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S_EquilibPoints.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\MyTikzmark}[2]{
+     \tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {$#2$};}
+\newcommand{\DrawVLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.3ex, #1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\DrawHLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.2em, #1] (#2.west) -- (#3.east);
+  \end{tikzpicture}
+}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-1.html" class="internal"><span class="codenumber">1</span> <span class="title">What is Game Theory?</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_intro.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Players and Strategies</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_intro.html#Ex_Cake" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Example: Cake Division</span></a></div></li>
+<li><div class="toc-item"><a href="S_intro.html#Ex_Tic" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Developing Strategies: Tic Tac Toe</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="S_IntroMatrices.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Game Matrices and Payoff Vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroMatrices.html#Ex_MatchPennies" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Example: Matching Pennies</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroMatrices.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Understanding the Players</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-2.html" class="internal"><span class="codenumber">2</span> <span class="title">Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_IntroZeroSum.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Introduction to Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#Ex_election" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Example: An Election Campaign Game</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#subsection-6" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Equilibrium Pairs</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_DominatedStrategies.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Dominated Strategies</span></a></div></li>
+<li>
+<div class="toc-item"><a href="S_Probability.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Probability and Expected Value</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_Probability.html#subsection-7" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Some Basic Probability</span></a></div></li>
+<li><div class="toc-item"><a href="S_Probability.html#subsection-8" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Expected Value</span></a></div></li>
+</ul>
+</li>
+<li class="active"><div class="toc-item"><a href="S_OneCardStud.html" class="internal"><span class="codenumber">2.4</span> <span class="title">A Game of Chance</span></a></div></li>
+<li><div class="toc-item"><a href="S_EquilibPoints.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_ZeroSumStrategySummary.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Strategies for Zero-Sum Games and Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopRationality.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Popular Culture: Rationality and Perfect Information</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-3.html" class="internal"><span class="codenumber">3</span> <span class="title">Repeated Two-Person Zero-sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroRepeated.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Repeated Games</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratGraph.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Mixed Strategies: Graphical Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_solvingeq.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Using Sage to Graph Lines and Solve Equations</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratEV.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Mixed Strategies: Expected Value Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_LiarsPoker.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Liar's Poker</span></a></div></li>
+<li><div class="toc-item"><a href="S_AugMatrices.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Augmented Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="S_Undercut.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Undercut</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-4.html" class="internal"><span class="codenumber">4</span> <span class="title">Non-Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="Intrononzero.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Introduction to Two-Player Non-Zero-Sum Games</span></a></div></li>
+<li><div class="toc-item"><a href="pdandchicken.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Prisoner's Dilemma and Chicken</span></a></div></li>
+<li><div class="toc-item"><a href="S_CWPD.html" class="internal"><span class="codenumber">4.3</span> <span class="title">A Class-Wide Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_PDconditions.html" class="internal"><span class="codenumber">4.4</span> <span class="title">What Makes a Prisoner's Dilemma?</span></a></div></li>
+<li><div class="toc-item"><a href="VDexperiment.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Another Multiplayer Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_VolunteerDil.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Volunteer's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_RepeatPD.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Repeated Prisoner's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopPD.html" class="internal"><span class="codenumber">4.8</span> <span class="title">Popular Culture: Prisoner's Dilemma and Chicken</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="colophon-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S_OneCardStud"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.4</span> <span class="title">A Game of Chance</span>
+</h2>
+<div class="para" id="p-249">Now that we have worked with expected value, we can begin to analyze some simple games that involve an element of chance.</div>
+<article class="example example-like" id="E_onecardstud"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-E_onecardstud"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.1</span><span class="period">.</span><span class="space"> </span><span class="title">One-Card Stud Poker.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardstud"><article class="example example-like"><div class="para" id="p-250">We begin with a deck of cards in which 50% are Aces (you can use Red cards for Aces) and 50% are Kings (you can use Black cards for Kings). There are two players and one dealer. The play begins by each player putting in the ante (1 chip). Each player is dealt one card face down. WITHOUT LOOKING AT HIS OR HER CARD, the players decide to Bet (say, 1 chip) or Fold. Players secretly show the dealer their choice. If one player bet and the other folded, then the player who bet wins. If both bet or both fold, then Ace beats King (or Red beats Black); winner takes the pot (all the chips from the ante and any bets). If there is a tie, they split the pot.</div></article></div>
+<article class="exercise exercise-like" id="E_playonecard"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_playonecard"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.2</span><span class="period">.</span><span class="space"> </span><span class="title">Play One-Card Stud Poker.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_playonecard"><article class="exercise exercise-like"><div class="para" id="p-251">Play the game several times with two other people (so you have two players and a dealer), keeping track of the strategy choices of the players and the resulting payoffs.</div></article></div>
+<article class="exercise exercise-like" id="E_onecardconjecturestrat"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardconjecturestrat"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Guess a strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardconjecturestrat"><article class="exercise exercise-like"><div class="para" id="p-252">Based on playing the game, determine a possible winning strategy.</div></article></div>
+<article class="exercise exercise-like" id="E_onecardzerosum"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardzerosum"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.4</span><span class="period">.</span><span class="space"> </span><span class="title">Check if zero-sum.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardzerosum"><article class="exercise exercise-like"><div class="para" id="p-253">Is this a zero-sum game? Why or why not?</div></article></div>
+<article class="exercise exercise-like" id="exercise-48"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-48"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Relationship between the deal and the strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-48"><article class="exercise exercise-like"><div class="para" id="p-254">Does the actual deal affect the choice of strategy?</div></article></div>
+<article class="exercise exercise-like" id="exercise-49"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-49"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.6</span><span class="period">.</span><span class="space"> </span><span class="title">Strategy choices.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-49"><article class="exercise exercise-like"><div class="para" id="p-255">On any given deal, what strategy choices does a player have?</div></article></div>
+<div class="para" id="p-256">Before moving on, you should attempt to determine the payoff matrix. The remainder of this section will be more meaningful if you have given some thought to what the payoff matrix should be. It is OK to be wrong at this point, it is not OK to not try.</div>
+<article class="exercise exercise-like" id="E_possiblematrix"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_possiblematrix"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.7</span><span class="period">.</span><span class="space"> </span><span class="title">Determine a possible payoff matrix.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_possiblematrix"><article class="exercise exercise-like"><div class="para" id="p-257">Write down a possible payoff matrix for this game.</div></article></div>
+<div class="para" id="p-258">Now let's work through creating the payoff matrix for One-Card Stud Poker.</div>
+<article class="exercise exercise-like" id="E_payoffBF"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_payoffBF"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.8</span><span class="period">.</span><span class="space"> </span><span class="title">Payoff for [Bet, Fold].</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_payoffBF"><article class="exercise exercise-like"><div class="para" id="p-259">If Player 1 Bets and Player 2 Folds, does it matter which cards were dealt? How much does Player 1 win? How much does Player 2 lose? What is the payoff vector for [Bet, Fold]? (Keep in mind your answer to <a href="" class="xref" data-knowl="./knowl/E_onecardzerosum.html" title="Exercise 2.4.4: Check if zero-sum">Exercise 2.4.4</a>.)</div></article></div>
+<article class="exercise exercise-like" id="E_payoffFB"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_payoffFB"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.9</span><span class="period">.</span><span class="space"> </span><span class="title">Payoff for [Fold, Bet].</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_payoffFB"><article class="exercise exercise-like"><div class="para" id="p-260">If Player 1 Folds and Player 2 Bets, does it matter which cards were dealt? What is the payoff vector for [Fold, Bet]?</div></article></div>
+<article class="exercise exercise-like" id="exercise-53"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-53"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.10</span><span class="period">.</span><span class="space"> </span><span class="title">Payoff and the actual deal.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-53"><article class="exercise exercise-like"><div class="para" id="p-261">If both players Bet, does the payoff depend on which cards were dealt?</div></article></div>
+<div class="para" id="p-262">To determine the payoff vector for [Bet, Bet] and [Fold, Fold] we will need to consider which cards were dealt. We can use some probability to determine the remaining payoff vectors.</div>
+<article class="exercise exercise-like" id="E_probofdeal"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_probofdeal"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.11</span><span class="period">.</span><span class="space"> </span><span class="title">Probability of each deal.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_probofdeal"><article class="exercise exercise-like"><div class="para" id="p-263">There are four possible outcomes of the deal– list them. What is the probability that each occurs? (Remember: the probability of an event is a number between 0 and 1.)</div></article></div>
+<article class="exercise exercise-like" id="E_BBpayoffperdeal"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BBpayoffperdeal"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.12</span><span class="period">.</span><span class="space"> </span><span class="title">Payoff for each deal with [Bet, Bet].</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BBpayoffperdeal"><article class="exercise exercise-like"><div class="para" id="p-264">Consider the pair of strategies [Bet, Bet]. For each possible deal, determine the payoff vector. For example, if the players are each dealt an Ace (Red), how much does each player win? (Again, keep in mind your answer to <a href="" class="xref" data-knowl="./knowl/E_onecardzerosum.html" title="Exercise 2.4.4: Check if zero-sum">Exercise 2.4.4</a>.)</div></article></div>
+<div class="para" id="p-265">In order to calculate the payoff for [Bet, Bet], we need to take a weighted average of the possible payoff vectors in <a href="" class="xref" data-knowl="./knowl/E_BBpayoffperdeal.html" title="Exercise 2.4.12: Payoff for each deal with [Bet, Bet]">Exercise 2.4.12</a>. In particular, we will “weight” a payoff by the probability that it occurs. Recall that this is the <em class="emphasis">expected value</em>. We will calculate the expected value separately for each player.</div>
+<article class="exercise exercise-like" id="E_BBev1"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BBev1"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.13</span><span class="period">.</span><span class="space"> </span><span class="title">Player 1's expected value for [Bet, Bet].</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BBev1"><article class="exercise exercise-like"><div class="para" id="p-266">Find the expected value for [Bet, Bet] for Player 1.</div></article></div>
+<article class="exercise exercise-like" id="E_BBev2"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BBev2"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.14</span><span class="period">.</span><span class="space"> </span><span class="title">Player 2's expected value for [Bet, Bet].</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BBev2"><article class="exercise exercise-like"><div class="para" id="p-267">Find the expected value for [Bet, Bet] for Player 2.</div></article></div>
+<div class="para" id="p-268">The pair of expected values from <a href="" class="xref" data-knowl="./knowl/E_BBev1.html" title="Exercise 2.4.13: Player 1's expected value for [Bet, Bet]">Exercise 2.4.13</a> and <a href="" class="xref" data-knowl="./knowl/E_BBev2.html" title="Exercise 2.4.14: Player 2's expected value for [Bet, Bet]">Exercise 2.4.14</a> is the payoff vector for [Bet, Bet].</div>
+<article class="exercise exercise-like" id="E_BBexplain"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BBexplain"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.15</span><span class="period">.</span><span class="space"> </span><span class="title">Justify using expected value as the payoff.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BBexplain"><article class="exercise exercise-like"><div class="para" id="p-269">Explain why it should make sense to use the expected values for the payoffs in the matrix for the strategy pair [Bet, Bet].</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-2" id="hint-2"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-2"><div class="hint solution-like"><div class="para" id="p-270">Think about what a player needs to know to choose a strategy in a game of chance.</div></div></div>
+</div></article></div>
+<div class="para" id="p-271">We can use a similar process to find the payoff vector for [Fold, Fold].</div>
+<article class="exercise exercise-like" id="E_FF"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_FF"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.16</span><span class="period">.</span><span class="space"> </span><span class="title">Repeat for [Fold, Fold].</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_FF"><article class="exercise exercise-like"><div class="para" id="p-272">Repeat <a href="" class="xref" data-knowl="./knowl/E_BBpayoffperdeal.html" title="Exercise 2.4.12: Payoff for each deal with [Bet, Bet]">Exercise 2.4.12</a>, <a href="" class="xref" data-knowl="./knowl/E_BBev1.html" title="Exercise 2.4.13: Player 1's expected value for [Bet, Bet]">Exercise 2.4.13</a>, and <a href="" class="xref" data-knowl="./knowl/E_BBev2.html" title="Exercise 2.4.14: Player 2's expected value for [Bet, Bet]">Exercise 2.4.14</a> for the pair of strategies [Fold, Fold].</div></article></div>
+<article class="exercise exercise-like" id="E_onecardmatrix"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardmatrix"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.17</span><span class="period">.</span><span class="space"> </span><span class="title">Complete payoff matrix.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardmatrix"><article class="exercise exercise-like"><div class="para" id="p-273">Summarize the above work by giving the completed payoff matrix for One-Card Stud Poker.</div></article></div>
+<div class="para" id="p-274">Now that you have done all the hard work of finding the payoff matrix for One-Card Stud Poker, we can analyze our two-player zero-sum game using the techniques we learned in the previous sections. It is also important to see how the mathematical solution compares to our conjectured solution from <a href="" class="xref" data-knowl="./knowl/E_onecardconjecturestrat.html" title="Exercise 2.4.3: Guess a strategy">Exercise 2.4.3</a>.</div>
+<article class="exercise exercise-like" id="E_onecardstrategy"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardstrategy"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.18</span><span class="period">.</span><span class="space"> </span><span class="title">Best strategy for One-Card Stud.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardstrategy"><article class="exercise exercise-like"><div class="para" id="p-275">Use the payoff matrix to determine the best strategy for each player. If each player uses their best strategy, what will be the outcome of the game?</div></article></div>
+<article class="exercise exercise-like" id="E_onecardcompare"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardcompare"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.19</span><span class="period">.</span><span class="space"> </span><span class="title">Compare strategies.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardcompare"><article class="exercise exercise-like"><div class="para" id="p-276">Compare the strategy you found in <a href="" class="xref" data-knowl="./knowl/E_onecardstrategy.html" title="Exercise 2.4.18: Best strategy for One-Card Stud">Exercise 2.4.18</a> to your suggested strategy in <a href="" class="xref" data-knowl="./knowl/E_onecardconjecturestrat.html" title="Exercise 2.4.3: Guess a strategy">Exercise 2.4.3</a>. In particular, discuss how knowing the payoff matrix might have changed your strategy. Also compare the payoff that results from the strategy in <a href="" class="xref" data-knowl="./knowl/E_onecardstrategy.html" title="Exercise 2.4.18: Best strategy for One-Card Stud">Exercise 2.4.18</a> to the payoff that results from your original strategy in <a href="" class="xref" data-knowl="./knowl/E_onecardconjecturestrat.html" title="Exercise 2.4.3: Guess a strategy">Exercise 2.4.3</a> .</div></article></div>
+<div class="para" id="p-277">Since One-Card Stud Poker has an element of chance, we should see what happens if we play the game several times using the strategy from <a href="" class="xref" data-knowl="./knowl/E_onecardstrategy.html" title="Exercise 2.4.18: Best strategy for One-Card Stud">Exercise 2.4.18</a>.</div>
+<article class="exercise exercise-like" id="E_onecardlongrun"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardlongrun"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.20</span><span class="period">.</span><span class="space"> </span><span class="title">Payoff for repeated One-Card Stud.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardlongrun"><article class="exercise exercise-like"><div class="para" id="p-278">Use the payoff matrix to predict what the payoff to each player would be if the game is played ten times.</div></article></div>
+<article class="exercise exercise-like" id="E_onecardtrials"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardtrials"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.21</span><span class="period">.</span><span class="space"> </span><span class="title">Play repeated One-Card Stud.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardtrials"><article class="exercise exercise-like"><div class="para" id="p-279">Play the game ten times using the best strategy. How much has each player won or lost after ten hands of One-Card Stud Poker? Compare your answer to your prediction in <a href="" class="xref" data-knowl="./knowl/E_onecardlongrun.html" title="Exercise 2.4.20: Payoff for repeated One-Card Stud">Exercise 2.4.20</a>. Does the actual payoff differ from the theoretical payoff? If so, why do you think this might be?</div></article></div>
+<article class="exercise exercise-like" id="E_onecardfair"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_onecardfair"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.22</span><span class="period">.</span><span class="space"> </span><span class="title">Fair game.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_onecardfair"><article class="exercise exercise-like"><div class="para" id="p-280">Explain why this game is considered fair.</div></article></div>
+<article class="example example-like" id="E_genonecardstud"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-E_genonecardstud"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.23</span><span class="period">.</span><span class="space"> </span><span class="title">Generalized One-Card Stud Poker.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_genonecardstud"><article class="example example-like"><div class="para" id="p-281">In One-Card Stud Poker we anted one chip and bet one chip. Now, suppose we let players ante a different amount and bet a different amount (although players will still ante and bet the same amount as each other). Suppose a player antes <span class="process-math">\(a\)</span> and bets <span class="process-math">\(b\text{.}\)</span> How might this change the game?</div></article></div>
+<article class="exercise exercise-like" id="E_genonecard"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_genonecard"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.24</span><span class="period">.</span><span class="space"> </span><span class="title">Payoff matrix for Generalized One-Card Stud.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_genonecard"><article class="exercise exercise-like"><div class="para" id="p-282">Use the method outlined for One-Card Stud Poker to determine the payoff matrix for Generalized One-Card Stud Poker.</div></article></div>
+<article class="exercise exercise-like" id="exercise-67"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-67"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2.4.25</span><span class="period">.</span><span class="space"> </span><span class="title">Strategy for Generalized One-Card Stud.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-67"><article class="exercise exercise-like"><div class="para" id="p-283">Does the strategy change for the generalized version of the game? Explain.</div></article></div>
+<div class="para" id="p-284">Now that we have analyzed several zero-sum games, we can see how important is is to find any equilibrium pairs. In the next section we explore equilibrium strategies in more detail.</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="S_Probability.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S_EquilibPoints.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy"><div class="name">Powered by Runestone</div>
+<img class="logo" title="Powered by Runestone" src="https://runestone.academy/runestone/static/rectangle_badge.png" alt="Powered by Runestone"></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+</body>
+</html>

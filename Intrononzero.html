@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Introduction to Two-Player Non-Zero-Sum Games</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Introduction to Game Theory">
+<meta property="book:author" content="Jennifer Firkins Nordstrom">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="" target="_blank"><img src="external/logo.svg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Introduction to Game Theory:</span> <span class="subtitle">a Discovery Approach</span></a></h1>
+<p class="byline">Jennifer Firkins Nordstrom</p>
+</div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="chapter-4.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter-4.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="pdandchicken.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\MyTikzmark}[2]{
+     \tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {$#2$};}
+\newcommand{\DrawVLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.3ex, #1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\DrawHLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.2em, #1] (#2.west) -- (#3.east);
+  \end{tikzpicture}
+}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-1.html" class="internal"><span class="codenumber">1</span> <span class="title">What is Game Theory?</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_intro.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Players and Strategies</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_intro.html#Ex_Cake" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Example: Cake Division</span></a></div></li>
+<li><div class="toc-item"><a href="S_intro.html#Ex_Tic" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Developing Strategies: Tic Tac Toe</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="S_IntroMatrices.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Game Matrices and Payoff Vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroMatrices.html#Ex_MatchPennies" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Example: Matching Pennies</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroMatrices.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Understanding the Players</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-2.html" class="internal"><span class="codenumber">2</span> <span class="title">Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_IntroZeroSum.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Introduction to Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#Ex_election" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Example: An Election Campaign Game</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#subsection-6" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Equilibrium Pairs</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_DominatedStrategies.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Dominated Strategies</span></a></div></li>
+<li>
+<div class="toc-item"><a href="S_Probability.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Probability and Expected Value</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_Probability.html#subsection-7" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Some Basic Probability</span></a></div></li>
+<li><div class="toc-item"><a href="S_Probability.html#subsection-8" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Expected Value</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_OneCardStud.html" class="internal"><span class="codenumber">2.4</span> <span class="title">A Game of Chance</span></a></div></li>
+<li><div class="toc-item"><a href="S_EquilibPoints.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_ZeroSumStrategySummary.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Strategies for Zero-Sum Games and Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopRationality.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Popular Culture: Rationality and Perfect Information</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-3.html" class="internal"><span class="codenumber">3</span> <span class="title">Repeated Two-Person Zero-sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroRepeated.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Repeated Games</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratGraph.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Mixed Strategies: Graphical Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_solvingeq.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Using Sage to Graph Lines and Solve Equations</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratEV.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Mixed Strategies: Expected Value Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_LiarsPoker.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Liar's Poker</span></a></div></li>
+<li><div class="toc-item"><a href="S_AugMatrices.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Augmented Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="S_Undercut.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Undercut</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-4.html" class="internal"><span class="codenumber">4</span> <span class="title">Non-Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li class="active"><div class="toc-item"><a href="Intrononzero.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Introduction to Two-Player Non-Zero-Sum Games</span></a></div></li>
+<li><div class="toc-item"><a href="pdandchicken.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Prisoner's Dilemma and Chicken</span></a></div></li>
+<li><div class="toc-item"><a href="S_CWPD.html" class="internal"><span class="codenumber">4.3</span> <span class="title">A Class-Wide Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_PDconditions.html" class="internal"><span class="codenumber">4.4</span> <span class="title">What Makes a Prisoner's Dilemma?</span></a></div></li>
+<li><div class="toc-item"><a href="VDexperiment.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Another Multiplayer Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_VolunteerDil.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Volunteer's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_RepeatPD.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Repeated Prisoner's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopPD.html" class="internal"><span class="codenumber">4.8</span> <span class="title">Popular Culture: Prisoner's Dilemma and Chicken</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="colophon-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="Intrononzero"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">4.1</span> <span class="title">Introduction to Two-Player Non-Zero-Sum Games</span>
+</h2>
+<div class="para" id="p-636">In this section we introduce non-zero-sum games. In a <em class="emphasis">non-zero-sum game</em> the players' payoffs no longer need to sum to a constant value. Now it is possible for both players to gain or both players to lose.</div>
+<article class="exercise exercise-like" id="E_propertiesnonzero"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_propertiesnonzero"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Compare properties.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_propertiesnonzero"><article class="exercise exercise-like"><div class="para" id="p-637">What are some properties of a zero-sum game that may no longer hold for a non-zero-sum game? For example, in a zero-sum game is it ever advantageous to inform your opponent of your strategy? Is it advantageous to communicate prior to game play and determine a joint plan of action? Would you still want to minimize your opponents payoff?</div></article></div>
+<div class="para" id="p-638">Let's build an understanding of non-zero-sum games by looking at an example.</div>
+<article class="example example-like" id="E_battle_of_sexes"><a href="" data-knowl="" class="id-ref example-knowl original has-tabular" data-refid="hk-E_battle_of_sexes"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.1.2</span><span class="period">.</span><span class="space"> </span><span class="title">Battle of the Sexes.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_battle_of_sexes"><article class="example example-like"><div class="para" id="p-639">Alice and Bob want to go out to a movie. Bob wants to see an action movie, Alice wants to see a comedy. Both prefer to go to a movie together rather than to go alone. We can represent the situation with the payoff matrix in <a href="" class="xref" data-knowl="./knowl/T_battleofsexes.html" title="Table 4.1.3">Table 4.1.3</a>:</div> <figure class="table table-like" id="T_battleofsexes"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">4.1.3<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="c m b0 r0 l0 t0 lines" colspan="2">Alice</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b1 r0 l0 t0 lines">Action</td>
+<td class="l m b1 r0 l0 t0 lines">Comedy</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Bob</td>
+<td class="l m b0 r1 l0 t0 lines">Action</td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((2, 1)\)</span></td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((-1, -1)\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r1 l0 t0 lines">Comedy</td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((-1, -1)\)</span></td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((1, 2)\)</span></td>
+</tr>
+</table></div></figure></article></div>
+<article class="exercise exercise-like" id="E_BoSnotzerosum"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSnotzerosum"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">Not zero-sum.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSnotzerosum"><article class="exercise exercise-like"><div class="para" id="p-640">Explain why this is not a zero-sum game.</div></article></div>
+<div class="para" id="p-641">In zero-sum games it is never advantageous to let your opponent know you strategy. Does that property still apply for games like Battle of the Sexes?</div>
+<article class="exercise exercise-like" id="E_BoSannounce"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSannounce"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.5</span><span class="period">.</span><span class="space"> </span><span class="title">Announcing a strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSannounce"><article class="exercise exercise-like"><div class="para" id="p-642">Could it be advantageous for a player to announce his or her strategy? Could it be harmful to announce his or her strategy? If possible, describe a scenario in which it would be advantageous to announce a strategy. If possible, describe a scenario in which it would be harmful to announce a strategy.</div></article></div>
+<div class="para" id="p-643">We might first try to analyze Battle of the Sexes using the same techniques as we used for zero-sum games. For example, we might start as we would in zero-sum games by looking for any equilibrium points.</div>
+<article class="exercise exercise-like" id="E_BoSequilpoints"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSequilpoints"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">Equilibrium points.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSequilpoints"><article class="exercise exercise-like"><div class="para" id="p-644">Since our main goal in analyzing games has been to find equilibrium points, let's find any equilibrium points for Battle of teh Sexes. Are there any strategy pairs where players would not want to switch?</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-13" id="hint-13"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-13"><div class="hint solution-like"><div class="para" id="p-645">There are two!</div></div></div>
+</div></article></div>
+<article class="exercise exercise-like" id="E_BoSunequal"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSunequal"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">Values of equilibrium points.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSunequal"><article class="exercise exercise-like"><div class="para" id="p-646">Are the equilibrium points the same (in other words, does each player get the same payoff at each equilibrium point)? Compare this to what must happen for zero-sum games.</div></article></div>
+<div class="para" id="p-647">Now that we know Battle of the Sexes has two equilibrium points, we should try to find actual strategies for Alice and Bob. Is there a good strategy for each if they play the game only once? What if they repeat the game? Recall that with zero-sum games, if there was an equilibrium, rational players always want to play it, even if the game is repeated. Does that still seem to work here? Also, how might the ability to communicate change what the players do?</div>
+<article class="exercise exercise-like" id="E_BoSrepeat"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSrepeat"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.8</span><span class="period">.</span><span class="space"> </span><span class="title">Repeating the game.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSrepeat"><article class="exercise exercise-like"><div class="para" id="p-648">Suppose the game is played repeatedly. For example, Alice and Bob have movie night once a month. Suggest a strategy for Alice and for Bob. Feel free to play the game with someone from class. Try a playing several times <em class="emphasis">without communicating</em> about your strategy before each game.</div></article></div>
+<article class="exercise exercise-like" id="E_BoScommunication"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoScommunication"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.9</span><span class="period">.</span><span class="space"> </span><span class="title">Communication.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoScommunication"><article class="exercise exercise-like"><div class="para" id="p-649">How could communication affect the choice of strategy? Now play several times where you are allowed to communicate about your strategy. Does this change your strategy?</div></article></div>
+<article class="exercise exercise-like" id="E_BoSmixedequil"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSmixedequil"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.10</span><span class="period">.</span><span class="space"> </span><span class="title">Mixed strategy equilibrium.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSmixedequil"><article class="exercise exercise-like"><div class="para" id="p-650">In either case, communicating and not communicating, do you think your strategies for Alice and Bob represent a mixed strategy equilibrium?</div></article></div>
+<article class="exercise exercise-like" id="E_BoScomparezerosum"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoScomparezerosum"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.11</span><span class="period">.</span><span class="space"> </span><span class="title">Compare to zero-sum.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoScomparezerosum"><article class="exercise exercise-like"><div class="para" id="p-651">In a zero-sum game, if there is a pure strategy equilibrium, then what happens when you repeat a game? If you repeat Battle of the Sexes, does the game always result in an equilibrium pair?</div></article></div>
+<div class="para" id="p-652">Hopefully, you are beginning to see some of the challenges for analyzing non-zero-sum games. We know there are equilibrium points in Battle of the Sexes, but even rational play may not result in an equilibrium. For the remainder of this section, let's assume that players are <em class="emphasis">not</em> allowed to communicate about strategy prior to play. Such games are called <em class="emphasis">non-cooperative</em> games. Before moving on, let's try to find the maximin strategies for our players using the graphical method, as we did with zero-sum games.</div>
+<article class="exercise exercise-like" id="E_BoSBobsmatrix"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSBobsmatrix"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.12</span><span class="period">.</span><span class="space"> </span><span class="title">Bob's payoff matrix.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSBobsmatrix"><article class="exercise exercise-like"><div class="para" id="p-653">Consider Battle of the Sexes from Bob's point of view. We know that Bob wants to maximize his payoff (that has not changed). So Bob doesn't care what Alice's payoff's are. Write down Bob's payoff matrix.</div></article></div>
+<article class="exercise exercise-like" id="E_BoSBobgraph"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSBobgraph"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.13</span><span class="period">.</span><span class="space"> </span><span class="title">Graphical method on Bob's matrix.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSBobgraph"><article class="exercise exercise-like"><div class="para" id="p-654">Recall that the graphical method represents Bob's expected payoff depending on how often he plays each of his options. Sketch the graph associated with Bob's payoff matrix.</div></article></div>
+<article class="exercise exercise-like" id="E_BoSBobintersection"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSBobintersection"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.14</span><span class="period">.</span><span class="space"> </span><span class="title">Bob's maximin mixed strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSBobintersection"><article class="exercise exercise-like"><div class="para" id="p-655">The area between the two lines still represents the possible expected values for Bob, depending on how often Alice plays each of her strategies. So as before, the bottom lines represent the <em class="emphasis">least</em> Bob can expect as he varies his strategy. Thus, the point of intersection will represent the biggest of these smallest values (the maximin strategy). Find this point of intersection. How often should Bob play each option? What is his expected payoff?</div></article></div>
+<div class="para" id="p-656">So no matter what Alice does, Bob can expect that over the long run he wins at least the value you found in <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a>. Make sure you understand this before moving on.</div>
+<article class="exercise exercise-like" id="E_BoSAlicematrix"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSAlicematrix"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.15</span><span class="period">.</span><span class="space"> </span><span class="title">Alice's maximin mixed strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSAlicematrix"><article class="exercise exercise-like"><div class="para" id="p-657">Now consider Battle of the Sexes from Alice's point of view. Write down her payoff matrix and use the graphical method to find the probability with which she should play each option and her expected payoff.</div></article></div>
+<div class="para" id="p-658">Now, from <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a> and <a href="" class="xref" data-knowl="./knowl/E_BoSAlicematrix.html" title="Exercise 4.1.15: Alice's maximin mixed strategy">Exercise 4.1.15</a> you have the minimum payoff each player should expect. Note that since this is not a zero-sum game, both players can expect a positive payoff. But now we want to see how this pair of mixed strategies really works for the players.</div>
+<article class="exercise exercise-like" id="E_BoSBobsmaximin"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSBobsmaximin"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.16</span><span class="period">.</span><span class="space"> </span><span class="title">Alice's expected value when Bob plays his maximin strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSBobsmaximin"><article class="exercise exercise-like"><div class="para" id="p-659">Assume Bob plays the mixed strategy from <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a>. Calculate Alice's expected value for each of her <em class="emphasis">pure</em> strategies (<span class="process-math">\(E_2\)</span>(Comedy) and <span class="process-math">\(E_2\)</span>(Action)).</div></article></div>
+<article class="exercise exercise-like" id="E_BoSAlicepref"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSAlicepref"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.17</span><span class="period">.</span><span class="space"> </span><span class="title">Alice's preference.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSAlicepref"><article class="exercise exercise-like"><div class="para" id="p-660">Are Alice's expected values equal? If not, which strategy does she prefer when Bob plays the mixed strategy from <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a>? Does Alice want to deviate from her mixed strategy?</div></article></div>
+<article class="exercise exercise-like" id="E_BoSBobchange"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSBobchange"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.18</span><span class="period">.</span><span class="space"> </span><span class="title">Mixed strategy equilibrium.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSBobchange"><article class="exercise exercise-like"><div class="para" id="p-661">Now if Alice plays a pure strategy, does Bob want to change his strategy? So is the mixed strategy pair for Bob and Alice from <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a> and <a href="" class="xref" data-knowl="./knowl/E_BoSAlicematrix.html" title="Exercise 4.1.15: Alice's maximin mixed strategy">Exercise 4.1.15</a> an equilibrium? In fact, if Bob changes his strategy, how does his expected value compare to the expected value for his mixed strategy?</div></article></div>
+<article class="exercise exercise-like" id="E_BoSgraphwrong"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSgraphwrong"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.19</span><span class="period">.</span><span class="space"> </span><span class="title">Downside of the graphical method.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSgraphwrong"><article class="exercise exercise-like"><div class="para" id="p-662">What goes wrong with the graphical method in the case of a non-zero-sum game?</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-14" id="hint-14"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-14"><div class="hint solution-like"><div class="para" id="p-663">Is it important for Alice to consider the minimax strategy? Does Alice have any reason to minimize Bob's payoff?</div></div></div>
+</div></article></div>
+<div class="para" id="p-664">As we can see by the above example, the methods used to analyze zero-sum games may not be too helpful for non-zero-sum games. Part of the problem is that in solving zero-sum games we take into consideration that one player wants to <em class="emphasis">minimize</em> the payoff to the other player. This is no longer the case. Changing strategies may allow BOTH players to do better. A player no longer has any reason to prevent the other player from doing better.</div>
+<article class="exercise exercise-like" id="E_BoSstartBmixed"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSstartBmixed"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.20</span><span class="period">.</span><span class="space"> </span><span class="title">Response to the mixed strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSstartBmixed"><article class="exercise exercise-like"><div class="para" id="p-665">So we know the mixed strategy won't give us an equilibrium. But suppose we start there. In other words, suppose Bob plans to play the mixed strategy from <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a>. Which pure strategy should Alice play? In response, which pure strategy should Bob play? What is the outcome? Do you end up at an equilibrium?</div></article></div>
+<article class="exercise exercise-like" id="E_BoSstartAmixed"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSstartAmixed"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.21</span><span class="period">.</span><span class="space"> </span><span class="title">Bos's expected value when Alice plays her maximin strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSstartAmixed"><article class="exercise exercise-like"><div class="para" id="p-666">Now suppose Alice plans to play the mixed strategy from <a href="" class="xref" data-knowl="./knowl/E_BoSAlicematrix.html" title="Exercise 4.1.15: Alice's maximin mixed strategy">Exercise 4.1.15</a>. Calculate the expected value for Bob for each of his pure strategies. Which pure strategy does Bob prefer to play? How will Alice respond to Bob's pure strategy? What is the outcome? Do you end up at an equilibrium?</div></article></div>
+<article class="exercise exercise-like" id="E_BoSoutguess"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSoutguess"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.22</span><span class="period">.</span><span class="space"> </span><span class="title">Out-guessing the mixed strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSoutguess"><article class="exercise exercise-like"><div class="para" id="p-667">Suppose Bob thinks Alice will try the mixed strategy and Alice thinks Bob will try the mixed strategy. Which pure strategy will each play? What is the outcome? Do you end up at an equilibrium?</div></article></div>
+<article class="exercise exercise-like" id="E_BoSeverplaymixed"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSeverplaymixed"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.23</span><span class="period">.</span><span class="space"> </span><span class="title">Playing the maximin mixed strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSeverplaymixed"><article class="exercise exercise-like"><div class="para" id="p-668">Considering <a href="" class="xref" data-knowl="./knowl/E_BoSstartBmixed.html" title="Exercise 4.1.20: Response to the mixed strategy">Exercise 4.1.20</a>, <a href="" class="xref" data-knowl="./knowl/E_BoSstartAmixed.html" title="Exercise 4.1.21: Bos's expected value when Alice plays her maximin strategy">Exercise 4.1.21</a>, and <a href="" class="xref" data-knowl="./knowl/E_BoSoutguess.html" title="Exercise 4.1.22: Out-guessing the mixed strategy">Exercise 4.1.22</a>, is it in a player's best interest to even consider playing the mixed strategy from <a href="" class="xref" data-knowl="./knowl/E_BoSBobintersection.html" title="Exercise 4.1.14: Bob's maximin mixed strategy">Exercise 4.1.14</a> or <a href="" class="xref" data-knowl="./knowl/E_BoSAlicematrix.html" title="Exercise 4.1.15: Alice's maximin mixed strategy">Exercise 4.1.15</a>?</div></article></div>
+<div class="para" id="p-669">We've seen the limitations of the graphical method, but what about the expected value method?</div>
+<article class="exercise exercise-like" id="E_BoSevsol"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_BoSevsol"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.1.24</span><span class="period">.</span><span class="space"> </span><span class="title">Expected value solution.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_BoSevsol"><article class="exercise exercise-like"><div class="para" id="p-670">Try applying the expected value method to Battle of the Sexes. What mixed strategies do you get? Explain why this method will also not result in an equilibrium. You might want to consider whether it is important for one player to minimize the expected value for the other player.</div></article></div>
+<div class="para" id="p-671">Now that we have seen how the methods that allowed us to solve zero-sum games don't work for non-zero-sum games, we will need to find new ways to approach non-zero-sum games.</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="chapter-4.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="pdandchicken.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy"><div class="name">Powered by Runestone</div>
+<img class="logo" title="Powered by Runestone" src="https://runestone.academy/runestone/static/rectangle_badge.png" alt="Powered by Runestone"></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Repeated Prisoner's Dilemma</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Introduction to Game Theory">
+<meta property="book:author" content="Jennifer Firkins Nordstrom">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="" target="_blank"><img src="external/logo.svg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Introduction to Game Theory:</span> <span class="subtitle">a Discovery Approach</span></a></h1>
+<p class="byline">Jennifer Firkins Nordstrom</p>
+</div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="S_VolunteerDil.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter-4.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S_PopPD.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\MyTikzmark}[2]{
+     \tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {$#2$};}
+\newcommand{\DrawVLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.3ex, #1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\DrawHLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.2em, #1] (#2.west) -- (#3.east);
+  \end{tikzpicture}
+}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-1.html" class="internal"><span class="codenumber">1</span> <span class="title">What is Game Theory?</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_intro.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Players and Strategies</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_intro.html#Ex_Cake" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Example: Cake Division</span></a></div></li>
+<li><div class="toc-item"><a href="S_intro.html#Ex_Tic" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Developing Strategies: Tic Tac Toe</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="S_IntroMatrices.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Game Matrices and Payoff Vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroMatrices.html#Ex_MatchPennies" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Example: Matching Pennies</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroMatrices.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Understanding the Players</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-2.html" class="internal"><span class="codenumber">2</span> <span class="title">Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_IntroZeroSum.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Introduction to Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#Ex_election" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Example: An Election Campaign Game</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#subsection-6" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Equilibrium Pairs</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_DominatedStrategies.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Dominated Strategies</span></a></div></li>
+<li>
+<div class="toc-item"><a href="S_Probability.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Probability and Expected Value</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_Probability.html#subsection-7" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Some Basic Probability</span></a></div></li>
+<li><div class="toc-item"><a href="S_Probability.html#subsection-8" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Expected Value</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_OneCardStud.html" class="internal"><span class="codenumber">2.4</span> <span class="title">A Game of Chance</span></a></div></li>
+<li><div class="toc-item"><a href="S_EquilibPoints.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_ZeroSumStrategySummary.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Strategies for Zero-Sum Games and Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopRationality.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Popular Culture: Rationality and Perfect Information</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-3.html" class="internal"><span class="codenumber">3</span> <span class="title">Repeated Two-Person Zero-sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroRepeated.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Repeated Games</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratGraph.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Mixed Strategies: Graphical Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_solvingeq.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Using Sage to Graph Lines and Solve Equations</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratEV.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Mixed Strategies: Expected Value Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_LiarsPoker.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Liar's Poker</span></a></div></li>
+<li><div class="toc-item"><a href="S_AugMatrices.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Augmented Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="S_Undercut.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Undercut</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-4.html" class="internal"><span class="codenumber">4</span> <span class="title">Non-Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="Intrononzero.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Introduction to Two-Player Non-Zero-Sum Games</span></a></div></li>
+<li><div class="toc-item"><a href="pdandchicken.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Prisoner's Dilemma and Chicken</span></a></div></li>
+<li><div class="toc-item"><a href="S_CWPD.html" class="internal"><span class="codenumber">4.3</span> <span class="title">A Class-Wide Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_PDconditions.html" class="internal"><span class="codenumber">4.4</span> <span class="title">What Makes a Prisoner's Dilemma?</span></a></div></li>
+<li><div class="toc-item"><a href="VDexperiment.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Another Multiplayer Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_VolunteerDil.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Volunteer's Dilemma</span></a></div></li>
+<li class="active"><div class="toc-item"><a href="S_RepeatPD.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Repeated Prisoner's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopPD.html" class="internal"><span class="codenumber">4.8</span> <span class="title">Popular Culture: Prisoner's Dilemma and Chicken</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="colophon-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S_RepeatPD"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">4.7</span> <span class="title">Repeated Prisoner's Dilemma</span>
+</h2>
+<div class="para" id="p-838">In this section we look at two players playing Prisoner's Dilemma repeatedly. We call this game an <em class="emphasis">iterated</em> Prisoner's Dilemma. Recall the general Prisoner's Dilemma matrix from previous sections, given again in <a href="" class="xref" data-knowl="./knowl/T_CWPD3.html" title="Table 4.7.1">Table 4.7.1</a>.</div>
+<figure class="table table-like" id="T_CWPD3"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">4.7.1<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="c m b0 r0 l0 t0 lines" colspan="2">Player 2</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="c m b1 r0 l0 t0 lines">Cooperate</td>
+<td class="c m b1 r0 l0 t0 lines">Defect</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Driver 1</td>
+<td class="l m b0 r1 l0 t0 lines">Cooperate</td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((3, 3)\)</span></td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((0, 5)\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r1 l0 t0 lines">Defect</td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((5, 0)\)</span></td>
+<td class="c m b1 r1 l0 t0 lines"><span class="process-math">\((1, 1)\)</span></td>
+</tr>
+</table></div></figure><div class="para" id="p-839">Before playing the iterated version, think about how you would play the above game if you only play it once with an opponent. But let's also give the game some context as in the following exercise.</div>
+<article class="exercise exercise-like" id="E_internetpurchaseonce"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_internetpurchaseonce"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.2</span><span class="period">.</span><span class="space"> </span><span class="title">A single internet purcase.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_internetpurchaseonce"><article class="exercise exercise-like"><div class="para" id="p-840">Suppose the above matrix represents the situation of purchasing an item (say, a used textbook) on the internet where both parties are untraceable. You agree to send the money at the same time that the seller agrees to send the book. Then we can think of Cooperating as each of you sending money/ book, and Defecting as not sending money/ book. Why might a player Cooperate? Why might a player Defect?</div></article></div>
+<article class="exercise exercise-like" id="E_internetpurchaserepeat"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_internetpurchaserepeat"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.3</span><span class="period">.</span><span class="space"> </span><span class="title">Repeated internet purchases.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_internetpurchaserepeat"><article class="exercise exercise-like"><div class="para" id="p-841">Now suppose you wish to continue to do business with the other party. For example, instead of buying a used textbook, maybe you are buying music downloads. Why might a player cooperate? Why might a player defect? Do these resons differ from your reasons in <a href="" class="xref" data-knowl="./knowl/E_internetpurchaseonce.html" title="Exercise 4.7.2: A single internet purcase">Exercise 4.7.2</a>?</div></article></div>
+<div class="para" id="p-842">It is possible that your answers to the above questions depended on the context, so let's go back to just thinking about the game as a simple matrix game. Think about how you played the Class-wide Prisoner's Dilemma, but now think about repeating the game several times with the same player. Do you think your strategy would change? Remember, if we repeat the game we are not restricted to playing a pure strategy.</div>
+<article class="exercise exercise-like" id="E_RPDstrategy"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDstrategy"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.4</span><span class="period">.</span><span class="space"> </span><span class="title">Strategy for repeated Prisoner's Dilemma.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDstrategy"><article class="exercise exercise-like"><div class="para" id="p-843">Suggest a strategy for playing the Prisoner's Dilemma in <a href="" class="xref" data-knowl="./knowl/T_CWPD3.html" title="Table 4.7.1">Table 4.7.1</a> repeatedly. DON'T SHARE YOUR STRATEGY WITH ANYONE YET!</div></article></div>
+<div class="para" id="p-844">Now let's see how your strategy works by actually playing the game several times.</div>
+<article class="exercise exercise-like" id="E_RPDplay"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDplay"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.5</span><span class="period">.</span><span class="space"> </span><span class="title">Play Prisoner's Dilemma repeatedly.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDplay"><article class="exercise exercise-like"><div class="para" id="p-845">Play 10 rounds of Prisoner's Dilemma with someone in class. Use your suggested strategy. Keep track of the payoffs. Did your strategy seem effective? What should it mean to have an “effective” strategy?</div></article></div>
+<div class="para" id="p-846">We are now going to play a Prisoner's Dilemma Tournament! Several strategies are suggested below. Choose one of the strategies below (or keep playing with your own strategy). You are to play your strategy against everyone else in the class. Keep a running total of your score. Don't tell your opponents your strategy.</div>
+<div class="para logical" id="p-847">
+<div class="para">Some possible strategies:</div>
+<ul class="disc">
+<li id="li-216"><div class="para" id="p-848">Strategy: <dfn class="terminology">Defection.</dfn> Your strategy is to <em class="emphasis">always</em> choose DEFECT (D).</div></li>
+<li id="li-217"><div class="para" id="p-849">Strategy: <dfn class="terminology">Cooperation.</dfn> Your strategy is to <em class="emphasis">always</em> choose COOPERATE (C).</div></li>
+<li id="li-218"><div class="para" id="p-850">Strategy: <dfn class="terminology">Tit for Tat.</dfn> Your strategy is to play whatever your opponent just played. Your first move is to COOPERATE (C), but then you need to repeat your opponent's last move.</div></li>
+<li id="li-219"><div class="para" id="p-851">Strategy: <dfn class="terminology">Tit for Two Tats.</dfn> Your strategy is to COOPERATE (C) unless your opponent DEFECTS twice in a row. After two D's you respond with D.</div></li>
+<li id="li-220"><div class="para" id="p-852">Strategy: <dfn class="terminology">Random (1/2, 1/2).</dfn> Your strategy is to COOPERATE (C) randomly 50% of the time and DEFECT (D) 50% of the time. [Note: it will be hard to be truly random, but try to play each option approximately the same amount.]</div></li>
+<li id="li-221"><div class="para" id="p-853">Strategy: <dfn class="terminology">Random (3/4, 1/4).</dfn> Your strategy is to COOPERATE (C) randomly 75% of the time and DEFECT (D) 25% of the time. [Note: it will be hard to be truly random, but try to play C more often than D.]</div></li>
+<li id="li-222"><div class="para" id="p-854">Strategy: <dfn class="terminology">Random (1/4, 3/4).</dfn> Your strategy is to COOPERATE (C) randomly 25% of the time and DEFECT (D) 75% of the time. [Note: it will be hard to be truly random, but try to play D more often than C.]</div></li>
+<li id="li-223"><div class="para" id="p-855">Strategy: <dfn class="terminology">Tit for Tat with Occasional Surprise D.</dfn> Your strategy is to play whatever your opponent just played. Your first move is to COOPERATE (C), but then you need to repeat your opponent's last move. Occasionally, you will deviate from this strategy by playing D.</div></li>
+</ul>
+</div>
+<article class="exercise exercise-like" id="E_RPDplaytournament"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDplaytournament"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.6</span><span class="period">.</span><span class="space"> </span><span class="title">A Prisoner's Dilemma tournament.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDplaytournament"><article class="exercise exercise-like"><div class="para" id="p-856">WITHOUT SHARING YOUR STRATEGY, play Prisoner's Dilemma 10 times with each of the other members of the class. Keep track of the payoffs for each game and your total score.</div></article></div>
+<div class="para" id="p-857">After playing Repeated Prisoner's Dilemma as a class, can you determine who used which strategy? At this point you may share your strategy with others. Was your strategy more effective with some strategies than with others? If some of the above strategies were not used, can you guess how your strategy would have done against them?</div>
+<article class="exercise exercise-like" id="E_RPDeffectivestrategies"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDeffectivestrategies"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.7</span><span class="period">.</span><span class="space"> </span><span class="title">Effectiveness of your strategy.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDeffectivestrategies"><article class="exercise exercise-like"><div class="para" id="p-858">Describe which opponents' strategies seemed to give you more points, which seemed to give you fewer?</div></article></div>
+<article class="exercise exercise-like" id="E_RPDbeststrategies"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDbeststrategies"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.8</span><span class="period">.</span><span class="space"> </span><span class="title">Winning strategies.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDbeststrategies"><article class="exercise exercise-like"><div class="para" id="p-859">Describe the strategy or strategies that had the highest scores in the tournament. Does this seem surprising? Why or why not? How do the winning strategies compare to the strategy you suggested in <a href="" class="xref" data-knowl="./knowl/E_RPDstrategy.html" title="Exercise 4.7.4: Strategy for repeated Prisoner's Dilemma">Exercise 4.7.4</a>?</div></article></div>
+<div class="para" id="p-860">What strategies seem the most rational? Are pure strategies the most rational? Does it depend on what sort of strategy your opponent is playing?</div>
+<article class="exercise exercise-like" id="E_RPDcompare"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDcompare"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.9</span><span class="period">.</span><span class="space"> </span><span class="title">Rationality in repeated Prisoner's Dilemma.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDcompare"><article class="exercise exercise-like"><div class="para" id="p-861">How does Repeated Prisoner's Dilemma differ from the “one-time” Prisoner's Dilemma? Try to think in terms of rational strategies.</div></article></div>
+<div class="para" id="p-862">As <a href="" class="xref" data-knowl="./knowl/E_internetpurchaserepeat.html" title="Exercise 4.7.3: Repeated internet purchases">Exercise 4.7.3</a> suggests we can think of real-life interactions that can be modeled as a Prisoner's Dilemma.</div>
+<article class="exercise exercise-like" id="E_RPDreallife"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDreallife"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.10</span><span class="period">.</span><span class="space"> </span><span class="title">Example of Repeated Prisoner's Dilemma in real life.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDreallife"><article class="exercise exercise-like"><div class="para" id="p-863">Describe a situation from real life that resembles a Repeated Prisoner's Dilemma.</div></article></div>
+<div class="para" id="p-864">Repeated or Iterated Prisoner's Dilemma has applications to biology and sociology. If you think of higher point totals as “success as a species” in biology or “success of a society” in sociology, we can try to determine which strategies seem the most effective or successful. Individuals do not need the highest point total to be successful, but low point totals will not succeed. Just like grades in a course, you don't need the highest score to pass a class, but very bad scores will fail. In order to model the situation of a society, think about what happens to defectors in a society of cooperators or cooperators in a society of defectors. Who will be able to succeed?</div>
+<article class="exercise exercise-like" id="E_RPDfewdefect"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDfewdefect"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.11</span><span class="period">.</span><span class="space"> </span><span class="title">Only a few defectors.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDfewdefect"><article class="exercise exercise-like"><div class="para" id="p-865">How do a few defectors fare in a society of mostly cooperators? How do the cooperators fare? (In other words, who will be more successful?) Keep in mind that everyone is playing with lots of cooperators and only a few defectors. Who will have the most points, cooperators or defectors?</div></article></div>
+<article class="exercise exercise-like" id="E_RPDfewcoop"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDfewcoop"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.12</span><span class="period">.</span><span class="space"> </span><span class="title">Only a few cooperators.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDfewcoop"><article class="exercise exercise-like"><div class="para" id="p-866">How do a few cooperators fare in a society of mostly defectors? How do the defectors fare? (In other words, who will be more successful?) Keep in mind that everyone is playing with lots of defectors and only a few cooperators. Who will have the most points, cooperators or defectors?</div></article></div>
+<div class="para" id="p-867">After thinking about individuals in a society playing pure strategies, what happens to individiuals who are playing some of the mixed strategies listed above?</div>
+<article class="exercise exercise-like" id="E_RPDtft"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-E_RPDtft"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4.7.13</span><span class="period">.</span><span class="space"> </span><span class="title">A society of TIT-FOR-TATers.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_RPDtft"><article class="exercise exercise-like"><div class="para" id="p-868">Now consider a society of mostly TIT-FOR-TATers. How do a few defectors fare in a society of mostly TIT-FOR-TATers? How do the TIT-FOR-TATers fare? How would a few cooperators fare with the TIT-FOR-TATers? Would the evolution of such a society favor cooperation or defection?</div></article></div>
+<div class="para" id="p-869">The TIT-FOR-TAT strategy is particularly interesting in an iterated Prisoner's Dilemma. It has a few special characteristics that lead to success. First it is <em class="emphasis">responsive</em> in that it responds to the strategy of the other player. If the other player is cooperating, the TIT-FOR-TAT strategy will be able to gain the 3 points on each round. If the other player is defecting, it will defect so as to not keep getting the sucker's payoff of 0. The random strategies and pure strategies, for example, are not responsive. They do not respond to how the other player is playing. Chances are when you played in the tournament, you wanted to be able to adapt your strategy to respond to how your opponent was playing.</div>
+<div class="para" id="p-870">The TIT-FOR-TAT strategy is also <em class="emphasis">nice</em> in that it starts by cooperating. If it meets another cooperator it will continue to cooperate. If the opponent at some point begins cooperating, it will, too. However, it is also <em class="emphasis">unexploitable</em>. This means that a defector cannot take advantage of the “niceness.” It “punishes” any defection with an in-kind defection.</div>
+<div class="para" id="p-871">The TIT-FOR-TAT behavior has been observed in some animal populations, but you also might be able to think of situations in your own life where you or your friends have employed such a strategy with each other! Has it been effective for you?</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="S_VolunteerDil.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S_PopPD.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy"><div class="name">Powered by Runestone</div>
+<img class="logo" title="Powered by Runestone" src="https://runestone.academy/runestone/static/rectangle_badge.png" alt="Powered by Runestone"></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+</body>
+</html>

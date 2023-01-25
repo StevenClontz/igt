@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
+</head>
+<body class="ignore-math">
+<article class="li"><h3 class="heading"><span class="title">Step 3c.</span></h3>
+<div class="para">Now we can use technology to help us solve the equations.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-3"><script type="text/x-sage">p, m = var('p, m')
+solve([m==-2*p+1, m==2*p], p, m)[0]
+</script></pre>
+<div class="para">The solution for Player 1 is <span class="process-math">\((p, m)\text{.}\)</span> Where <span class="process-math">\(p\)</span> is the probability Player 1 plays B, and <span class="process-math">\(m\)</span> is the expected payoff to Player 1.</div>
+<div class="para">We can use this Sage cell to solve for <span class="process-math">\(p\)</span> and <span class="process-math">\(m\)</span> for any <span class="process-math">\(2\times 2\)</span> game by editing the equations <span class="process-math">\(m==-2*p+1, m==2*p\text{.}\)</span>
+</div></article><span class="incontext"><a href="S_solvingeq.html#li-133" class="internal">in-context</a></span>
+</body>
+</html>

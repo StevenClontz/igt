@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Augmented Matrices</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Introduction to Game Theory">
+<meta property="book:author" content="Jennifer Firkins Nordstrom">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="" target="_blank"><img src="external/logo.svg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Introduction to Game Theory:</span> <span class="subtitle">a Discovery Approach</span></a></h1>
+<p class="byline">Jennifer Firkins Nordstrom</p>
+</div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="S_LiarsPoker.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter-3.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S_Undercut.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\MyTikzmark}[2]{
+     \tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {$#2$};}
+\newcommand{\DrawVLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.3ex, #1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\DrawHLine}[3][]{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[shorten \lt =0.2em, #1] (#2.west) -- (#3.east);
+  \end{tikzpicture}
+}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter-1.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface-1.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-1.html" class="internal"><span class="codenumber">1</span> <span class="title">What is Game Theory?</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_intro.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Players and Strategies</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_intro.html#Ex_Cake" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Example: Cake Division</span></a></div></li>
+<li><div class="toc-item"><a href="S_intro.html#Ex_Tic" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Developing Strategies: Tic Tac Toe</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="S_IntroMatrices.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Game Matrices and Payoff Vectors</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroMatrices.html#Ex_MatchPennies" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Example: Matching Pennies</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroMatrices.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Understanding the Players</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-2.html" class="internal"><span class="codenumber">2</span> <span class="title">Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="S_IntroZeroSum.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Introduction to Two-Person Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#Ex_election" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Example: An Election Campaign Game</span></a></div></li>
+<li><div class="toc-item"><a href="S_IntroZeroSum.html#subsection-6" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Equilibrium Pairs</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_DominatedStrategies.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Dominated Strategies</span></a></div></li>
+<li>
+<div class="toc-item"><a href="S_Probability.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Probability and Expected Value</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_Probability.html#subsection-7" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Some Basic Probability</span></a></div></li>
+<li><div class="toc-item"><a href="S_Probability.html#subsection-8" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Expected Value</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="S_OneCardStud.html" class="internal"><span class="codenumber">2.4</span> <span class="title">A Game of Chance</span></a></div></li>
+<li><div class="toc-item"><a href="S_EquilibPoints.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_ZeroSumStrategySummary.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Strategies for Zero-Sum Games and Equilibrium Points</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopRationality.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Popular Culture: Rationality and Perfect Information</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-3.html" class="internal"><span class="codenumber">3</span> <span class="title">Repeated Two-Person Zero-sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="S_IntroRepeated.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Repeated Games</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratGraph.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Mixed Strategies: Graphical Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_solvingeq.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Using Sage to Graph Lines and Solve Equations</span></a></div></li>
+<li><div class="toc-item"><a href="S_MixStratEV.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Mixed Strategies: Expected Value Solution</span></a></div></li>
+<li><div class="toc-item"><a href="S_LiarsPoker.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Liar's Poker</span></a></div></li>
+<li class="active"><div class="toc-item"><a href="S_AugMatrices.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Augmented Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="S_Undercut.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Undercut</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter-4.html" class="internal"><span class="codenumber">4</span> <span class="title">Non-Zero-Sum Games</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="Intrononzero.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Introduction to Two-Player Non-Zero-Sum Games</span></a></div></li>
+<li><div class="toc-item"><a href="pdandchicken.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Prisoner's Dilemma and Chicken</span></a></div></li>
+<li><div class="toc-item"><a href="S_CWPD.html" class="internal"><span class="codenumber">4.3</span> <span class="title">A Class-Wide Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_PDconditions.html" class="internal"><span class="codenumber">4.4</span> <span class="title">What Makes a Prisoner's Dilemma?</span></a></div></li>
+<li><div class="toc-item"><a href="VDexperiment.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Another Multiplayer Experiment</span></a></div></li>
+<li><div class="toc-item"><a href="S_VolunteerDil.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Volunteer's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_RepeatPD.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Repeated Prisoner's Dilemma</span></a></div></li>
+<li><div class="toc-item"><a href="S_PopPD.html" class="internal"><span class="codenumber">4.8</span> <span class="title">Popular Culture: Prisoner's Dilemma and Chicken</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter-1.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="colophon-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S_AugMatrices"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.6</span> <span class="title">Augmented Matrices</span>
+</h2>
+<div class="para" id="p-554"></div>
+<div class="para" id="p-555">In this section, we will see how to use matrices to solve systems of equations. In both the graphical method and the expected value method, you have had to solve a system of equations. In the graphical method you had systems consisting of two lines such as <a href="" class="xref" data-knowl="./knowl/E_twoeq.html" title="Example 3.6.1: Two Equations">Example 3.6.1</a>.</div>
+<article class="example example-like" id="E_twoeq"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-E_twoeq"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.6.1</span><span class="period">.</span><span class="space"> </span><span class="title">Two Equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_twoeq"><article class="example example-like"><div class="para" id="p-556">An example of a system of two lines:</div>
+<div class="displaymath process-math" id="md-3">
+\begin{align*}
+y \amp = \frac{3}{5}x-\frac{1}{5}\\
+y \amp =-x+3.
+\end{align*}
+</div></article></div>
+<div class="para" id="p-557">In the expected value method we had systems of three equations such as <a href="" class="xref" data-knowl="./knowl/E_threeeq.html" title="Example 3.6.2: Three Equations">Example 3.6.2</a>.</div>
+<article class="example example-like" id="E_threeeq"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-E_threeeq"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.6.2</span><span class="period">.</span><span class="space"> </span><span class="title">Three Equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-E_threeeq"><article class="example example-like"><div class="para" id="p-558">An example of a system of three equations where the variables are <span class="process-math">\(E_1(A), E_1(B), P_2(C), P_2(D)\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="md-4">
+\begin{align*}
+E_1(A) \amp = P_2(C)-P_2(D)\\
+E_1(B) \amp = 2P_2(D)\\
+1 \amp = P_2(C)+P_2(D).
+\end{align*}
+</div></article></div>
+<div class="para" id="p-559">In <a href="" class="xref" data-knowl="./knowl/E_threeeq.html" title="Example 3.6.2: Three Equations">Example 3.6.2</a>, even after setting <span class="process-math">\(E_1(A)=E_1(B)\)</span> so that there were only 2 variables, the algebra began to get cumbersome. What if we wanted to solve a much larger game, such as a 5 X 5 game?</div>
+<div class="para" id="p-560">We've used matrices to represent our games, but now we want to use them as a mathematical tool to help us solve systems of equations. In order to use matrices to solve our systems of equations, we want to write all our equations in the same form: we will have all the variable terms on the left of the equals sign and all constants on the right.</div>
+<div class="para logical" id="p-561">
+<div class="para">Thus, in <a href="" class="xref" data-knowl="./knowl/E_twoeq.html" title="Example 3.6.1: Two Equations">Example 3.6.1</a> we can write the system as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_twoeq.html" id="md-5">
+\begin{align*}
+\frac{3}{5}x-y \amp =\frac{1}{5}\\
+x+y \amp = 3.
+\end{align*}
+</div>
+</div>
+<div class="para logical" id="p-562">
+<div class="para">In fact, we can simplify the first equation by multiplying both sides by 5:</div>
+<div class="displaymath process-math" id="md-6">
+\begin{align*}
+3x-5y \amp =1\\
+x+y \amp = 3.
+\end{align*}
+</div>
+</div>
+<div class="para logical" id="p-563">
+<div class="para">We can use the coefficients and constants to create a matrix:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left[
+\begin{matrix}3 \amp  -5 \amp  1\\
+1 \amp  1 \amp  3
+\end{matrix} 
+\right].
+\end{equation*}
+</div>
+</div>
+<div class="para" id="p-564">In this matrix you have a column for the coefficients of each variable. So the coefficients of <span class="process-math">\(x\)</span> are in the first column, the coefficients of <span class="process-math">\(y\)</span> are in the second. The constant terms are always in the last column. Each row corresponds to one equation. This matrix is called an <em class="emphasis">augmented matrix</em>. It is really just a matrix, but we call it <em class="emphasis">augmented</em> if we include information from both sides of the equation (the coefficients and the constants).</div>
+<div class="para" id="p-565">The algebraic method for solving the system of equations (finding the <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> values that satisfy both equations) is called <em class="emphasis">row reduction</em>. It is based on the <em class="emphasis">elimination method</em> that you may have seen in a precalculus or college algebra course. We won't go through the algebra here, as we really don't need it. Since our goal is to be able to easily solve larger systems of equations, we will rely on technology to do the algebra.</div>
+<div class="para" id="p-566">Computer algebra systems such as <em class="emphasis">Sage</em>, <em class="emphasis">Mathematica</em>, and <em class="emphasis">Maple</em>, as well as graphing calculators, can easily do the row reduction for us.</div>
+<div class="para logical" id="p-567">
+<div class="para">On a graphing calculator, use the matrix function to enter the matrix. Then use the “rref” function (this stands for “reduced row echelon form”). The result will be the following matrix:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left[
+\begin{matrix}1 \amp  0 \amp  2\\
+0 \amp  1 \amp  1
+\end{matrix} 
+\right].
+\end{equation*}
+</div>
+</div>
+<div class="para" id="p-568">We can solve this even more directly using <em class="emphasis">Sage</em>.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-6"><script type="text/x-sage">A=matrix([[3,-5,1],[1,1,3]]);
+show(A.rref())
+</script></pre>
+<div class="para logical" id="p-569">
+<div class="para">Recall that the first column is for <span class="process-math">\(x\)</span> and the second is for <span class="process-math">\(y\text{.}\)</span> Each row represents an equation. So translating each row back to equations, we have the following system of equations:</div>
+<div class="displaymath process-math" id="md-7">
+\begin{align*}
+x+0y \amp =2\\
+0x+y \amp = 1
+\end{align*}
+</div>
+<div class="para">or</div>
+<div class="displaymath process-math" id="md-8">
+\begin{align*}
+x \amp =2\\
+y \amp = 1.
+\end{align*}
+</div>
+</div>
+<div class="para" id="p-570">By plugging these values back into the original equations, you can verify that this is in fact the solution.</div>
+<div class="para" id="p-571">Since the technology does all the algebra for us, our job is to translate the equations into an appropriate matrix and then translate the final matrix back into the solution to the system of equations. Remember, when using a matrix to solve a game, the matrix is only a tool, it is not the solution to the game.</div>
+<div class="para logical" id="p-572">
+<div class="para">Now, let's try the equations for the expected value method using <a href="" class="xref" data-knowl="./knowl/E_threeeq.html" title="Example 3.6.2: Three Equations">Example 3.6.2</a>. As presented, how many variables does the system have?</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_threeeq.html" id="md-9">
+\begin{align*}
+E_1(A) \amp = P_2(C)-P_2(D)\\
+E_1(B) \amp = 2P_2(D)\\
+1 \amp = P_2(C)+P_2(D)
+\end{align*}
+</div>
+</div>
+<div class="para logical" id="p-573">
+<div class="para">It has 4: <span class="process-math">\(E_1(A), E_1(B), P_2(C)\)</span> and <span class="process-math">\(P_2(D)\text{.}\)</span> But when we solved these equations, we set the expected values equal. This gives us the two equations</div>
+<div class="displaymath process-math" id="md-10">
+\begin{align*}
+P_2(C)-P_2(D) \amp = 2P_2(D)\\
+1 \amp = P_2(C)+P_2(D).
+\end{align*}
+</div>
+</div>
+<div class="para logical" id="p-574">
+<div class="para">Now if we put these into the form with all variables on the left and constants on the right, we get</div>
+<div class="displaymath process-math" id="md-11">
+\begin{align*}
+P_2(C)-3P_2(D) \amp = 0\\
+P_2(C)+P_2(D) \amp = 1.
+\end{align*}
+</div>
+</div>
+<div class="para logical" id="p-575">
+<div class="para">Putting these equations into an augmented matrix, gives us</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left[
+\begin{matrix}1 \amp  -3 \amp  0\\
+1 \amp  1 \amp  1
+\end{matrix} 
+\right],
+\end{equation*}
+</div>
+<div class="para">where the first column corresponds to <span class="process-math">\(P_2(C)\)</span> and the second column corresponds to <span class="process-math">\(P_2(D)\text{.}\)</span>
+</div>
+</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-7"><script type="text/x-sage">A=matrix([[1,-3,0],[1,1,1]]);
+show(A.rref())
+</script></pre>
+<div class="para logical" id="p-576">
+<div class="para">Using row reduction, we get</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left[
+\begin{matrix}1 \amp  0 \amp  3/4\\
+0 \amp  1 \amp  1/4
+\end{matrix} 
+\right].
+\end{equation*}
+</div>
+</div>
+<div class="para" id="p-577">Thus, recalling Column 1 is for <span class="process-math">\(P_2(C)\)</span> and Column 2 is for <span class="process-math">\(P_2(D)\text{,}\)</span> our solution is <span class="process-math">\(P_2(C)=3/4\text{,}\)</span> and <span class="process-math">\(P_2(D)=1/4\text{.}\)</span>
+</div>
+<div class="para" id="p-578">Here are some more systems of equations to practice solving using augmented matrices. If you want to use the above Sage cells just edit the values for each row in the cell.</div>
+<article class="exercise exercise-like" id="exercise-160"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-160"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.6.3</span><span class="period">.</span><span class="space"> </span><span class="title">Solve a system of 2 equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-160"><article class="exercise exercise-like"><div class="para" id="p-579">Solve the system of equations.</div> <div class="para logical" id="p-580"><div class="displaymath process-math">
+\begin{equation*}
+\begin{matrix}2x-2y\amp =6\\x+3y\amp =7
+\end{matrix}
+\end{equation*}
+</div></div></article></div>
+<article class="exercise exercise-like" id="exercise-161"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-161"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.6.4</span><span class="period">.</span><span class="space"> </span><span class="title">Solve another system of 2 equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-161"><article class="exercise exercise-like"><div class="para" id="p-581">Solve the system of equations.</div> <div class="para logical" id="p-582"><div class="displaymath process-math">
+\begin{equation*}
+\begin{matrix}4p_1-2p_2\amp =0\\p_1+p_2\amp =1
+\end{matrix}
+\end{equation*}
+</div></div></article></div>
+<div class="para" id="p-583">For larger matrices, you can edit the Sage cell by adding additional terms in each row, and adding more rows. For example, you can replace <span class="process-math">\([3,-5,1],[1,1,3]\)</span> with <span class="process-math">\([4,8,-4,4],[3,8,5,-11],[-2,1,12,-17]\text{.}\)</span>
+</div>
+<article class="exercise exercise-like" id="exercise-162"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-162"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.6.5</span><span class="period">.</span><span class="space"> </span><span class="title">Solve a system of 3 equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-162"><article class="exercise exercise-like"><div class="para" id="p-584">Consider the system of equations</div> <div class="para logical" id="p-585">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{matrix}4x+8y-4z\amp =4\\3x+8y+5z\amp =-11\\-2x+y+12z\amp =-17.
+\end{matrix}
+\end{equation*}
+</div>
+<ol class="lower-alpha">
+<li id="li-152"><div class="para" id="p-586">Set up the augmented matrix for this system.</div></li>
+<li id="li-153"><div class="para" id="p-587">Use row reduction to find the solution.</div></li>
+</ol>
+</div></article></div>
+<article class="exercise exercise-like" id="exercise-163"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-163"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.6.6</span><span class="period">.</span><span class="space"> </span><span class="title">Solve another system of 3 equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-163"><article class="exercise exercise-like"><div class="para" id="p-588">Consider the system of equations</div> <div class="para logical" id="p-589">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{matrix}2x+y-4z\amp =10\\3x+5z\amp =-5\\y+2z\amp =7.
+\end{matrix}
+\end{equation*}
+</div>
+<ol class="lower-alpha">
+<li id="li-154"><div class="para" id="p-590">Set up the augmented matrix for this system.</div></li>
+<li id="li-155"><div class="para" id="p-591">Use row reduction to find the solution.</div></li>
+</ol>
+</div></article></div>
+<article class="exercise exercise-like" id="exercise-164"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-164"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.6.7</span><span class="period">.</span><span class="space"> </span><span class="title">Even more practice with 3 equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-164"><article class="exercise exercise-like"><div class="para" id="p-592">Consider the system of equations</div> <div class="para logical" id="p-593">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{matrix}a+b-5c\amp =0\\-4a-b+6c\amp =0\\a+b+c\amp =1.
+\end{matrix}
+\end{equation*}
+</div>
+<ol class="lower-alpha">
+<li id="li-156"><div class="para" id="p-594">Set up the augmented matrix for this system.</div></li>
+<li id="li-157"><div class="para" id="p-595">Use row reduction to find the solution.</div></li>
+</ol>
+</div></article></div>
+<article class="exercise exercise-like" id="exercise-165"><a href="" data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-165"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3.6.8</span><span class="period">.</span><span class="space"> </span><span class="title">Now, a sytem with 5 equations.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-165"><article class="exercise exercise-like"><div class="para" id="p-596">Consider the system of equations</div> <div class="para logical" id="p-597">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{matrix}3x+2y-w-v\amp =0\\2x-y+3z+w+5v\amp =0\\x+2y+6z-w\amp =0\\ -y+z-3w+v\amp =0\\x+y+z+w+v\amp =1.
+\end{matrix}
+\end{equation*}
+</div>
+<ol class="lower-alpha">
+<li id="li-158"><div class="para" id="p-598">Set up the augmented matrix for this system.</div></li>
+<li id="li-159"><div class="para" id="p-599">Use row reduction to find the solution.</div></li>
+</ol>
+</div></article></div>
+<div class="para" id="p-600">Now we are ready to apply everything we have learned about solving repeated zero-sum games to a much more challenging game in the next section!</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="S_LiarsPoker.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S_Undercut.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy"><div class="name">Powered by Runestone</div>
+<img class="logo" title="Powered by Runestone" src="https://runestone.academy/runestone/static/rectangle_badge.png" alt="Powered by Runestone"></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+</body>
+</html>
